@@ -62,6 +62,17 @@ public class AuthorController {
         catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
+    }
+    @PutMapping("/update")
+    public ResponseEntity updateAuthor(@RequestBody AuthorEntity author){
+        try {
+            authorService.updateAuthor(author);
+            return  ResponseEntity.ok("Author updated successfully");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
 
     }
+
+
 }

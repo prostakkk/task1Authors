@@ -41,5 +41,12 @@ public class AuthorService {
         authorRepository.deleteAll();
     }
 
+    public AuthorEntity updateAuthor(AuthorEntity author){
+        AuthorEntity existingAuthor = authorRepository.findById(author.getId()).orElse(null);
+        existingAuthor.setName(author.getName());
+        existingAuthor.setAuthorCode(author.getAuthorCode());
+        return  authorRepository.save(existingAuthor);
+    }
+
 
 }
