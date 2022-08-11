@@ -3,6 +3,7 @@ package com.example.authorAPI.сontroller;
 import com.example.authorAPI.entity.AuthorEntity;
 import com.example.authorAPI.exception.AuthorAlreadyExistException;
 import com.example.authorAPI.exception.AuthorNotFoundException;
+import com.example.authorAPI.exception.NoAuthorsException;
 import com.example.authorAPI.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,6 +45,21 @@ public class AuthorController {
         try {
             return ResponseEntity.ok(authorService.deleteAuthor(id));
         } catch (Exception e) {
+            return ResponseEntity.badRequest().body("Error");
+        }
+
+    }
+
+    @DeleteMapping("/deleteall")
+    public ResponseEntity deleteAuthor( AuthorEntity author){
+        try {
+            authorService.deleteAuthors(author);
+            return  ResponseEntity.ok("Authors deleted successfully");
+        }
+        catch ( NoAuthorsException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        catch (Exception e) {
             return ResponseEntity.badRequest().body("Error");
         }
 

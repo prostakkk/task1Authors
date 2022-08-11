@@ -3,6 +3,7 @@ package com.example.authorAPI.service;
 import com.example.authorAPI.entity.AuthorEntity;
 import com.example.authorAPI.exception.AuthorAlreadyExistException;
 import com.example.authorAPI.exception.AuthorNotFoundException;
+import com.example.authorAPI.exception.NoAuthorsException;
 import com.example.authorAPI.model.Author;
 import com.example.authorAPI.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,12 @@ public class AuthorService {
     public Long deleteAuthor(Long id) {
        authorRepository.deleteById(id);
        return id;
+    }
+    public void deleteAuthors(AuthorEntity author) throws NoAuthorsException {
+        if(authorRepository.findAll() == null) {
+            throw new NoAuthorsException("There are no authors.");
+        }
+        authorRepository.deleteAll();
     }
 
 
