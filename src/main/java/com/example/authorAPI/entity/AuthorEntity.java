@@ -12,7 +12,7 @@ public class AuthorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String nameOfBook;
+
     public AuthorEntity() {
 
     }
@@ -33,11 +33,4 @@ public class AuthorEntity {
         this.name = name;
     }
 
-    public String getNameOfBook() {
-        return nameOfBook;
-    }
-
-    public void setNameOfBook(String nameOfBook) {
-        this.nameOfBook = nameOfBook;
-    }
 }
