@@ -1,10 +1,9 @@
 package com.example.authorAPI.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 
 @Entity
 public class AuthorEntity {
@@ -14,7 +13,12 @@ public class AuthorEntity {
     private String name;
     private String authorCode;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
+    private List<BooksEntity> books;
+    // Error with List
+
     public AuthorEntity() {
+
 
     }
 
