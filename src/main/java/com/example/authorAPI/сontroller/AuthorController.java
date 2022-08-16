@@ -1,13 +1,17 @@
 package com.example.authorAPI.сontroller;
 
 import com.example.authorAPI.entity.AuthorEntity;
+import com.example.authorAPI.entity.BooksEntity;
 import com.example.authorAPI.exception.AuthorAlreadyExistException;
 import com.example.authorAPI.exception.AuthorNotFoundException;
 import com.example.authorAPI.exception.NoAuthorsException;
+import com.example.authorAPI.model.Author;
 import com.example.authorAPI.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/authors")
@@ -39,6 +43,14 @@ public class AuthorController {
             return ResponseEntity.badRequest().body("Error");
         }
     }
+
+    @GetMapping("/getAll")
+    public List<AuthorEntity> getAuthors(){
+        return authorService.getAuthors();
+    }
+    // Get all authors
+
+
 
     @DeleteMapping("/delete{id}")
     public ResponseEntity deleteAuthor(@PathVariable Long id){

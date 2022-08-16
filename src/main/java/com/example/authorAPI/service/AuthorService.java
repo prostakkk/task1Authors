@@ -1,6 +1,7 @@
 package com.example.authorAPI.service;
 
 import com.example.authorAPI.entity.AuthorEntity;
+import com.example.authorAPI.entity.BooksEntity;
 import com.example.authorAPI.exception.AuthorAlreadyExistException;
 import com.example.authorAPI.exception.AuthorNotFoundException;
 import com.example.authorAPI.exception.NoAuthorsException;
@@ -8,6 +9,9 @@ import com.example.authorAPI.model.Author;
 import com.example.authorAPI.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AuthorService {
@@ -29,6 +33,14 @@ public class AuthorService {
         }
         return Author.toModel(author);
     }
+
+    public List<AuthorEntity> getAuthors(){
+        List<AuthorEntity> authors = new ArrayList<AuthorEntity>();
+        authorRepository.findAll().forEach(author -> authors.add(author));
+        return authors;
+    }
+
+
 
     public Long deleteAuthor(Long id) {
        authorRepository.deleteById(id);
