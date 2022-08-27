@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface AuthorRepository extends CrudRepository<AuthorEntity, Long> {
     AuthorEntity findByName(String name);
 
+    AuthorEntity findAllById(Long id);
 }
